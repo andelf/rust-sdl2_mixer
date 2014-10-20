@@ -2,7 +2,6 @@
 
 name = "sdl2_mixer"
 version = "0.0.1"
-readme = "README.md"
 authors = ["ShuYu Wang"]
 
 [lib]

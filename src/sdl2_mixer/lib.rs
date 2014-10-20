@@ -2,7 +2,6 @@
 A binding for SDL2_mixer.
  */
 
-#![crate_id="sdl2_mixer#sdl2_mixer:0.1"]
 #![crate_type = "lib"]
 #![desc = "SDL2_mixer bindings and wrappers"]
 #![comment = "SDL2_mixer bindings and wrappers"]
@@ -36,9 +35,11 @@ mod mac {
     extern {}
 }
 
-#[cfg(target_os="win32")]
-#[cfg(target_os="linux")]
-#[cfg(target_os="freebsd")]
+#[cfg(any(
+    target_os="win32",
+    target_os="linux",
+    target_os="freebsd"
+))]
 mod others {
     #[link(name="SDL2_mixer")]
     extern {}
@@ -52,55 +53,55 @@ mod ffi;
 mod ll {
     use libc::uint16_t;
 
-    pub static AUDIO_U8     : uint16_t =     0x0008;
-    pub static AUDIO_S8     : uint16_t =     0x8008;
-    pub static AUDIO_U16LSB : uint16_t =     0x0010;
-    pub static AUDIO_S16LSB : uint16_t =     0x8010;
-    pub static AUDIO_U16MSB : uint16_t =     0x1010;
-    pub static AUDIO_S16MSB : uint16_t =     0x9010;
-    pub static AUDIO_U16    : uint16_t =     AUDIO_U16LSB;
-    pub static AUDIO_S16    : uint16_t =     AUDIO_S16LSB;
-    pub static AUDIO_S32LSB : uint16_t =     0x8020;
-    pub static AUDIO_S32MSB : uint16_t =     0x9020;
-    pub static AUDIO_S32    : uint16_t =     AUDIO_S32LSB;
-    pub static AUDIO_F32LSB : uint16_t =     0x8120;
-    pub static AUDIO_F32MSB : uint16_t =     0x9120;
-    pub static AUDIO_F32    : uint16_t =     AUDIO_F32LSB;
-    pub static AUDIO_U16SYS : uint16_t =     AUDIO_U16LSB;
-    pub static AUDIO_S16SYS : uint16_t =     AUDIO_S16LSB;
-    pub static AUDIO_S32SYS : uint16_t =     AUDIO_S32LSB;
-    pub static AUDIO_F32SYS : uint16_t =     AUDIO_F32LSB;
+    pub const AUDIO_U8     : uint16_t =     0x0008;
+    pub const AUDIO_S8     : uint16_t =     0x8008;
+    pub const AUDIO_U16LSB : uint16_t =     0x0010;
+    pub const AUDIO_S16LSB : uint16_t =     0x8010;
+    pub const AUDIO_U16MSB : uint16_t =     0x1010;
+    pub const AUDIO_S16MSB : uint16_t =     0x9010;
+    pub const AUDIO_U16    : uint16_t =     AUDIO_U16LSB;
+    pub const AUDIO_S16    : uint16_t =     AUDIO_S16LSB;
+    pub const AUDIO_S32LSB : uint16_t =     0x8020;
+    pub const AUDIO_S32MSB : uint16_t =     0x9020;
+    pub const AUDIO_S32    : uint16_t =     AUDIO_S32LSB;
+    pub const AUDIO_F32LSB : uint16_t =     0x8120;
+    pub const AUDIO_F32MSB : uint16_t =     0x9120;
+    pub const AUDIO_F32    : uint16_t =     AUDIO_F32LSB;
+    pub const AUDIO_U16SYS : uint16_t =     AUDIO_U16LSB;
+    pub const AUDIO_S16SYS : uint16_t =     AUDIO_S16LSB;
+    pub const AUDIO_S32SYS : uint16_t =     AUDIO_S32LSB;
+    pub const AUDIO_F32SYS : uint16_t =     AUDIO_F32LSB;
 }
 
 pub type AudioFormat = uint16_t;
 
-pub static AudioU8     : AudioFormat = ll::AUDIO_U8;
-pub static AudioS8     : AudioFormat = ll::AUDIO_S8;
-pub static AudioU16LSB : AudioFormat = ll::AUDIO_U16LSB;
-pub static AudioS16LSB : AudioFormat = ll::AUDIO_S16LSB;
-pub static AudioU16MSB : AudioFormat = ll::AUDIO_U16MSB;
-pub static AudioS16MSB : AudioFormat = ll::AUDIO_S16MSB;
-pub static AudioU16    : AudioFormat = ll::AUDIO_U16;
-pub static AudioS16    : AudioFormat = ll::AUDIO_S16;
-pub static AudioS32LSB : AudioFormat = ll::AUDIO_S32LSB;
-pub static AudioS32MSB : AudioFormat = ll::AUDIO_S32MSB;
-pub static AudioS32    : AudioFormat = ll::AUDIO_S32;
-pub static AudioF32LSB : AudioFormat = ll::AUDIO_F32LSB;
-pub static AudioF32MSB : AudioFormat = ll::AUDIO_F32MSB;
-pub static AudioF32    : AudioFormat = ll::AUDIO_F32;
-pub static AudioU16SYS : AudioFormat = ll::AUDIO_U16SYS;
-pub static AudioS16SYS : AudioFormat = ll::AUDIO_S16SYS;
-pub static AudioS32SYS : AudioFormat = ll::AUDIO_S32SYS;
-pub static AudioF32SYS : AudioFormat = ll::AUDIO_F32SYS;
+pub const AUDIO_U8     : AudioFormat = ll::AUDIO_U8;
+pub const AUDIO_S8     : AudioFormat = ll::AUDIO_S8;
+pub const AUDIO_U16LSB : AudioFormat = ll::AUDIO_U16LSB;
+pub const AUDIO_S16LSB : AudioFormat = ll::AUDIO_S16LSB;
+pub const AUDIO_U16MSB : AudioFormat = ll::AUDIO_U16MSB;
+pub const AUDIO_S16MSB : AudioFormat = ll::AUDIO_S16MSB;
+pub const AUDIO_U16    : AudioFormat = ll::AUDIO_U16;
+pub const AUDIO_S16    : AudioFormat = ll::AUDIO_S16;
+pub const AUDIO_S32LSB : AudioFormat = ll::AUDIO_S32LSB;
+pub const AUDIO_S32MSB : AudioFormat = ll::AUDIO_S32MSB;
+pub const AUDIO_S32    : AudioFormat = ll::AUDIO_S32;
+pub const AUDIO_F32LSB : AudioFormat = ll::AUDIO_F32LSB;
+pub const AUDIO_F32MSB : AudioFormat = ll::AUDIO_F32MSB;
+pub const AUDIO_F32    : AudioFormat = ll::AUDIO_F32;
+pub const AUDIO_U16SYS : AudioFormat = ll::AUDIO_U16SYS;
+pub const AUDIO_S16SYS : AudioFormat = ll::AUDIO_S16SYS;
+pub const AUDIO_S32SYS : AudioFormat = ll::AUDIO_S32SYS;
+pub const AUDIO_F32SYS : AudioFormat = ll::AUDIO_F32SYS;
 
 /// The suggested default is signed 16bit samples in host byte order.
-pub static DEFAULT_FORMAT: AudioFormat = ll::AUDIO_S16SYS;
+pub const DEFAULT_FORMAT: AudioFormat = ll::AUDIO_S16SYS;
 /// Defualt channels: Stereo.
-pub static DEFAULT_CHANNELS : int = 2;
+pub const DEFAULT_CHANNELS : int = 2;
 /// Good default sample rate in Hz (samples per second) for PC sound cards.
-pub static DEFAULT_FREQUENCY : int = 22050;
+pub const DEFAULT_FREQUENCY : int = 22050;
 /// Maximum value for any volume setting.
-pub static MAX_VOLUME : int = 128;
+pub const MAX_VOLUME : int = 128;
 
 /// Returns the version of the dynamically linked SDL_mixer library
 pub fn get_linked_version() -> Version {
@@ -111,12 +112,12 @@ pub fn get_linked_version() -> Version {
 }
 
 bitflags!(flags InitFlag : u32 {
-    static InitFlac       = ffi::MIX_INIT_FLAC as u32,
-    static InitMod        = ffi::MIX_INIT_MOD as u32,
-    static InitModPlug    = ffi::MIX_INIT_MODPLUG as u32,
-    static InitMp3        = ffi::MIX_INIT_MP3 as u32,
-    static InitOgg        = ffi::MIX_INIT_OGG as u32,
-    static InitFluidSynth = ffi::MIX_INIT_FLUIDSYNTH as u32
+    const INIT_FLAC         = ffi::MIX_INIT_FLAC as u32,
+    const INIT_MOD          = ffi::MIX_INIT_MOD as u32,
+    const INIT_MODPLUG      = ffi::MIX_INIT_MODPLUG as u32,
+    const INIT_MP3          = ffi::MIX_INIT_MP3 as u32,
+    const INIT_OGG          = ffi::MIX_INIT_OGG as u32,
+    const INIT_FLUID_SYNTH  = ffi::MIX_INIT_FLUIDSYNTH as u32
 })
 
 /// Loads dynamic libraries and prepares them for use.  Flags should be
@@ -174,7 +175,7 @@ pub fn get_chunk_decoder(index: int) -> String {
 }
 
 /// The internal format for an audio chunk.
-#[deriving(PartialEq)] #[allow(raw_pointer_deriving, visible_private_types)]
+#[deriving(PartialEq)] #[allow(raw_pointer_deriving)]
 pub struct Chunk {
     pub raw: *const ffi::Mix_Chunk,
     pub owned: bool
@@ -600,7 +601,7 @@ extern "C" fn c_music_finished_hook() {
 }
 
 /// This is an opaque data type used for Music data.
-#[deriving(PartialEq)] #[allow(raw_pointer_deriving, visible_private_types)]
+#[deriving(PartialEq)] #[allow(raw_pointer_deriving)]
 pub struct Music {
     pub raw: *const ffi::Mix_Music,
     pub owned: bool,
