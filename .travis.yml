@@ -1,3 +1,4 @@
+language: rust
 env:
   global:
     - secure: JLix99cbDVr9+s9QOux8FmnyEHGmpNHavKoO7lo1dG4Em8XyeByIXeBNggYX3d/vpdQ+FrqNO+3HrRJpZvXl1OO3uPGFtIQLH6bXLTaggC3z/67maEQSQQS8rcSHImkg1CDKoPWKvZfnB6IqWRYLTBJWILwBLoocure7/+/8III=
@@ -18,8 +19,7 @@ install:
   - ./configure && make && sudo make install
   - cd -
   - git clone https://github.com/andelf/rust-sdl2.git
-  - (cd rust-sdl2 && make)
-  - rustc rust-sdl2/src/sdl2/lib.rs
+  - (cd rust-sdl2 && cargo build -v)
 script:
   - rustc -L. rust-sdl2_mixer/src/sdl2_mixer/lib.rs
   - rustdoc -L. rust-sdl2_mixer/src/sdl2_mixer/lib.rs
