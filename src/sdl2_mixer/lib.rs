@@ -240,7 +240,7 @@ impl LoaderRWops for RWops {
 
 /// Fader effect type enumerations
 #[repr(C)]
-#[derive(Copy, Clone, PartialEq, Hash, Show, FromPrimitive)]
+#[derive(Copy, Clone, PartialEq, Hash, Debug, FromPrimitive)]
 pub enum Fading {
     NoFading  = ffi::MIX_NO_FADING as isize,
     FadingOut = ffi::MIX_FADING_OUT as isize,
@@ -248,13 +248,13 @@ pub enum Fading {
 }
 
 /// Sound effect channel.
-#[derive(Copy, PartialEq, Show)]
+#[derive(Copy, PartialEq, Debug)]
 pub struct Channel(isize);
 
 /// Set the number of channels being mixed.
-pub fn allocate_channels(numchans: int) -> int {
+pub fn allocate_channels(numchans: isize) -> isize {
     unsafe {
-        ffi::Mix_AllocateChannels(numchans as c_int) as int
+        ffi::Mix_AllocateChannels(numchans as c_int) as isize
     }
 }
 
@@ -265,7 +265,7 @@ extern "C" fn c_channel_finished_callback(ch: c_int) {
         match channel_finished_callback {
             None => (),
             Some(cb) => {
-                cb(Channel(ch as int))
+                cb(Channel(ch as isize))
             }
         }
     }
@@ -571,18 +571,18 @@ pub fn get_music_decoder(index: isize) -> String {
 
 /// Music type enumerations
 #[repr(C)]
-#[derive(Copy, Clone, PartialEq, Hash, Show, FromPrimitive)]
+#[derive(Copy, Clone, PartialEq, Hash, Debug, FromPrimitive)]
 pub enum MusicType {
-    MusicNone    = ffi::MUS_NONE as int,
-    MusicCmd     = ffi::MUS_CMD as int,
-    MusicWav     = ffi::MUS_WAV as int,
-    MusicMod     = ffi::MUS_MOD as int,
-    MusicMid     = ffi::MUS_MID as int,
-    MusicOgg     = ffi::MUS_OGG as int,
-    MusicMp3     = ffi::MUS_MP3 as int,
-    MusicMp3Mad  = ffi::MUS_MP3_MAD as int,
-    MusicFlac    = ffi::MUS_FLAC as int,
-    MusicModPlug = ffi::MUS_MODPLUG as int
+    MusicNone    = ffi::MUS_NONE as isize,
+    MusicCmd     = ffi::MUS_CMD as isize,
+    MusicWav     = ffi::MUS_WAV as isize,
+    MusicMod     = ffi::MUS_MOD as isize,
+    MusicMid     = ffi::MUS_MID as isize,
+    MusicOgg     = ffi::MUS_OGG as isize,
+    MusicMp3     = ffi::MUS_MP3 as isize,
+    MusicMp3Mad  = ffi::MUS_MP3_MAD as isize,
+    MusicFlac    = ffi::MUS_FLAC as isize,
+    MusicModPlug = ffi::MUS_MODPLUG as isize
 }
 
 // hooks
