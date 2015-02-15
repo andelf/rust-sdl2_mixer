@@ -624,7 +624,7 @@ impl Music {
     /// Load music file to use.
     pub fn from_file(path: &Path) -> SdlResult<Music> {
         let raw = unsafe {
-            ffi::Mix_LoadMUS(CString::from_slice(path.filename().unwrap()).as_ptr())
+            ffi::Mix_LoadMUS(CString::from_slice(path.as_vec()).as_ptr())
         };
         if raw.is_null() {
             Err(get_error())
