@@ -9,6 +9,7 @@ A binding for SDL2_mixer.
 extern crate bitflags;
 extern crate libc;
 extern crate sdl2;
+extern crate "sdl2-sys" as sdl2_sys;
 
 use std::default;
 use std::ptr;
@@ -623,7 +624,7 @@ impl Music {
     /// Load music file to use.
     pub fn from_file(path: &Path) -> SdlResult<Music> {
         let raw = unsafe {
-            ffi::Mix_LoadMUS(CString::from_slice(path.filename().unwrap()).as_ptr())
+            ffi::Mix_LoadMUS(CString::from_slice(path.as_vec()).as_ptr())
         };
         if raw.is_null() {
             Err(get_error())
