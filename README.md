@@ -3,6 +3,7 @@ Rust-SDL2_mixer
 
 [![Build Status](https://travis-ci.org/andelf/rust-sdl2_mixer.svg?branch=master)](https://travis-ci.org/andelf/rust-sdl2_mixer)
 [![crates.io](http://meritbadge.herokuapp.com/sdl2_mixer)](https://crates.io/crates/sdl2_mixer)
+[![Crates.io](https://img.shields.io/crates/l/sdl2_mixer.svg)](https://github.com/andelf/rust-sdl2_mixer/blob/master/LICENSE-MIT)
 
 Rust bindings for SDL2_mixer.
 
@@ -20,7 +21,9 @@ Rust-SDL2_mixer uses the MIT licence.
 
 #### OSX
 
-    brew install sdl2_mixer
+```bash
+brew install sdl2_mixer --with-flac --with-fluid-synth --with-libmikmod --with-libmodplug --with-libvorbis --with-smpeg2
+```
     
 #### Windows
 
@@ -52,7 +55,7 @@ Place the following into your project's Cargo.toml file:
 
 ```toml
 [dependencies]
-sdl2_mixer = "0.17.0"
+sdl2_mixer = "0.24.0"
 ```
 
 Or, to depend on the newest rust-sdl2_mixer, reference the repository:
@@ -87,3 +90,16 @@ A simple demo that plays out a portion of a given music file is included:
 ```bash
 cargo run --example demo path/to/music.(mp3|flac|ogg|wav)
 ```
+
+## License
+
+Licensed under either of
+ * Apache License, Version 2.0 ([LICENSE-APACHE](LICENSE-APACHE) or http://www.apache.org/licenses/LICENSE-2.0)
+ * MIT license ([LICENSE-MIT](LICENSE-MIT) or http://opensource.org/licenses/MIT)
+at your option.
+
+### Contribution
+
+Unless you explicitly state otherwise, any contribution intentionally submitted
+for inclusion in the work by you, as defined in the Apache-2.0 license, shall be dual licensed as above, without any
+additional terms or conditions.
