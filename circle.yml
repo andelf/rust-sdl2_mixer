@@ -26,22 +26,22 @@ dependencies:
       fi
     # install SDL2
     - >
-      if [[ ! -e SDL2-2.0.5 ]]; then
+      if [[ ! -e $HOME/.local/lib/libSDL2.a ]]; then
         wget -q https://www.libsdl.org/release/SDL2-2.0.5.tar.gz;
         tar xf SDL2-*.tar.gz;
         cd SDL2-* && ./configure --prefix=$HOME/.local && make -j install;
       fi
     # install SDL2_mixer
     - >
-      if [[ ! -e SDL2_mixer-2.0.1 ]]; then
+      if [[ ! -e $HOME/.local/lib/libSDL2_mixer.a ]]; then
         wget -q https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.0.1.tar.gz;
         tar xf SDL2_mixer-*.tar.gz;
         cd SDL2_mixer-* && ./configure --prefix=$HOME/.local && make -j install;
       fi
     # set cargo & rust link args
     - >
-      mkdir -p .cargo
-      echo '[target]' >> .cargo/config
+      mkdir -p .cargo &&
+      echo '[target]' >> .cargo/config &&
       echo 'rustc-link-search = ["/home/ubuntu/.local/lib"]' >> .cargo/config
 
 
