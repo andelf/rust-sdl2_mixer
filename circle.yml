@@ -6,19 +6,12 @@ machine:
 
 dependencies:
   pre:
-    - mkdir builds
-    - cd builds
     - time wget -q https://www.libsdl.org/release/SDL2-2.0.3.tar.gz
     - time wget -q https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.0.0.tar.gz
     - time tar xf SDL2-*.tar.gz
     - time tar xf SDL2_mixer-*.tar.gz
-    - cd SDL2-*
-    - ./configure && make && sudo make install
-    - cd -
-    - cd SDL2_mixer-*
-    - ./configure && make && sudo make install
-    - cd -
-
+    - cd SDL2-* && ./configure && make && sudo make install
+    - cd SDL2_mixer-* && ./configure && make && sudo make install
 
 
 test:
