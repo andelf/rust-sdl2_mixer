@@ -3,6 +3,7 @@ machine:
     Asia/Chongqing
   pre:
     - curl -sS https://static.rust-lang.org/rustup.sh | sudo sh
+    - sed -i 's/github/git-non-exist-hub/g' ~/.gitconfig
 
 dependencies:
   pre:
@@ -15,11 +16,5 @@ dependencies:
 
 test:
   override:
-    - >
-      eval `ssh-agent` &&
-      ssh-add ~/.ssh/id_circleci_github &&
-      cargo build -v
-    - >
-      eval `ssh-agent` &&
-      ssh-add ~/.ssh/id_circleci_github &&
-      cargo test -v
+    - cargo build -v
+    - cargo test -v
