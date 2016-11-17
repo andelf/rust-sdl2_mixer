@@ -15,10 +15,10 @@ machine:
 
 dependencies:
   cache_directories:
-    # NOTE: it's bad idea to cache .cargo & .multirust
+    # NOTE: it's bad idea to cache .multirust
     #       since it'll increase cache restore time
-    # - ~/.cargo
     # - ~/.multirust
+    - ~/.cargo
     - ~/.local
   pre:
     # install rust/cargo
