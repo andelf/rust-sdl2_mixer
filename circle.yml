@@ -13,7 +13,7 @@ dependencies:
   cache_directories:
     - SDL2-2.0.3
     - SDL2_mixer-2.0.0
-#    - ~/.cargo
+    - ~/.cargo
   pre:
     - echo CPU Cores $(cat /proc/cpuinfo | grep processor | wc -l)
     # install rust nightly
@@ -37,7 +37,7 @@ dependencies:
       if [[ ! -e SDL2_mixer-2.0.0 ]]; then
         time wget -q https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.0.0.tar.gz;
         time tar xf SDL2_mixer-*.tar.gz;
-        cd SDL2_mixer-* && ./configure && make -j  -j $(cat /proc/cpuinfo | grep processor | wc -l);
+        cd SDL2_mixer-* && ./configure && make -j $(cat /proc/cpuinfo | grep processor | wc -l);
       fi
     - cd SDL2_mixer-* && sudo make install
 
