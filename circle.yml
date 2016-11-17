@@ -12,6 +12,7 @@ dependencies:
     - SDL2-2.0.3
     - SDL2_mixer-2.0.0
   pre:
+    - echo CPU Cores $(cat /proc/cpuinfo | grep processor | wc -l)
     - >
       if [[ ! -e SDL2-2.0.3 ]]; then
         time wget -q https://www.libsdl.org/release/SDL2-2.0.3.tar.gz;
