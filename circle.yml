@@ -16,8 +16,8 @@ machine:
 
 dependencies:
   cache_directories:
-    - ~/.cargo
-    - ~/.multirust
+#    - ~/.cargo
+#    - ~/.multirust
     - ~/.local
   pre:
     # install rust nightly
@@ -29,15 +29,13 @@ dependencies:
       else
         rustup default "nightly-${RUSTC_DATE}";
       fi
-    # install SDL2
-    - >
+      # install SDL2
       if [[ ! -e $HOME/.local/lib/libSDL2.a ]]; then
         wget -q https://www.libsdl.org/release/SDL2-2.0.5.tar.gz;
         tar xf SDL2-*.tar.gz;
         cd SDL2-* && ./configure --prefix=$HOME/.local && make -j install;
       fi
-    # install SDL2_mixer
-    - >
+      # install SDL2_mixer
       if [[ ! -e $HOME/.local/lib/libSDL2_mixer.a ]]; then
         wget -q https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.0.1.tar.gz;
         tar xf SDL2_mixer-*.tar.gz;
