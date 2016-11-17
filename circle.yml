@@ -5,13 +5,15 @@ machine:
     LD_LIBRARY_PATH: /usr/local/lib
     PATH: "$HOME/.cargo/bin:$PATH"
     RUSTC_DATE: "2016-10-06"
-  pre:
+  post:
     - sed -i 's/github/git-non-exist-hub/g' ~/.gitconfig
+    - env
 
 dependencies:
   cache_directories:
     - SDL2-2.0.3
     - SDL2_mixer-2.0.0
+    - ~/.cargo
   pre:
     - echo CPU Cores $(cat /proc/cpuinfo | grep processor | wc -l)
     # install rust nightly
