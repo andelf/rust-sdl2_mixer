@@ -23,7 +23,7 @@ dependencies:
   pre:
     # install rust/cargo
     # install SDL2/SDL2_mixer
-    - >
+    - |
       if [[ ! -e $HOME/.cargo ]]; then
         curl https://sh.rustup.rs -sSf |
           sh -s -- --no-modify-path --default-toolchain "nightly-${RUSTC_DATE}" -y;
