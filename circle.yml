@@ -17,13 +17,16 @@ machine:
 dependencies:
   cache_directories:
     - ~/.cargo
+    - ~/.local
   pre:
     # install rust nightly
     - >
       if [[ ! -e $HOME/.cargo ]]; then
-        curl https://sh.rustup.rs -sSf | sh -s -- --no-modify-path --default-toolchain "nightly-${RUSTC_DATE}" -y;
+        curl https://sh.rustup.rs -sSf |
+          sh -s -- --no-modify-path --default-toolchain "nightly-${RUSTC_DATE}" -y;
         rustup default "nightly-${RUSTC_DATE}";
       else
+        echo updating rust nightly
         rustup default "nightly-${RUSTC_DATE}";
       fi
     # install SDL2
