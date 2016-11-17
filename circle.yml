@@ -19,7 +19,7 @@ dependencies:
     # install rust nightly
     - >
       if [[ ! -e ~/.cargo ]]; then
-        curl -sS https://static.rust-lang.org/rustup.sh | sh;
+        curl https://sh.rustup.rs -sSf | sh;
         rustup default "nightly-${RUSTC_DATE}";
       else
         rustup default "nightly-${RUSTC_DATE}";
