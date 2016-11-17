@@ -13,13 +13,13 @@ dependencies:
   cache_directories:
     - SDL2-2.0.3
     - SDL2_mixer-2.0.0
-    - ~/.cargo
+#    - ~/.cargo
   pre:
     - echo CPU Cores $(cat /proc/cpuinfo | grep processor | wc -l)
     # install rust nightly
     - >
       if [[ ! -e ~/.cargo ]]; then
-        curl https://sh.rustup.rs -sSf | sh;
+        curl https://sh.rustup.rs -sSf | sh -s -- --no-modify-path --default-toolchain "nightly-${RUSTC_DATE}" -y;
         rustup default "nightly-${RUSTC_DATE}";
       else
         rustup default "nightly-${RUSTC_DATE}";
