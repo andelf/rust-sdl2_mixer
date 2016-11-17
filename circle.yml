@@ -17,6 +17,7 @@ machine:
 dependencies:
   cache_directories:
     - ~/.cargo
+    - ~/.multirust
     - ~/.local
   pre:
     # install rust nightly
