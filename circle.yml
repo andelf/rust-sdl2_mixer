@@ -14,7 +14,7 @@ dependencies:
   pre:
     # install rust nightly
     - >
-      if [[ ! -e ~/.cargo ]]; then
+      if [[ ! -e $HOME/.cargo ]]; then
         curl https://sh.rustup.rs -sSf | sh -s -- --no-modify-path --default-toolchain "nightly-${RUSTC_DATE}" -y;
         rustup default "nightly-${RUSTC_DATE}";
       else
@@ -23,16 +23,16 @@ dependencies:
     # install SDL2
     - >
       if [[ ! -e SDL2-2.0.3 ]]; then
-        time wget -q https://www.libsdl.org/release/SDL2-2.0.3.tar.gz;
-        time tar xf SDL2-*.tar.gz;
+        wget -q https://www.libsdl.org/release/SDL2-2.0.3.tar.gz;
+        tar xf SDL2-*.tar.gz;
         cd SDL2-* && ./configure && make -j;
       fi
     - cd SDL2-* && sudo make install
     # install SDL2_mixer
     - >
       if [[ ! -e SDL2_mixer-2.0.0 ]]; then
-        time wget -q https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.0.0.tar.gz;
-        time tar xf SDL2_mixer-*.tar.gz;
+        wget -q https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.0.0.tar.gz;
+        tar xf SDL2_mixer-*.tar.gz;
         cd SDL2_mixer-* && ./configure && make -j;
       fi
     - cd SDL2_mixer-* && sudo make install
