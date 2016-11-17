@@ -19,6 +19,8 @@ dependencies:
 #    - ~/.multirust
     - ~/.local
   pre:
+    # install rust/cargo
+    # install SDL2/SDL2_mixer
     - >
       if [[ ! -e $HOME/.cargo ]]; then
         curl https://sh.rustup.rs -sSf |
