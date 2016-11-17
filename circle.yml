@@ -1,11 +1,12 @@
 machine:
   environment:
     PATH: "$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
-    LD_LIBRARY_PATH: "$HOME/.local/lib"
-    LD_RUN_PATH: "$HOME/.local/lib"
+    LD_LIBRARY_PATH: "$LD_LIBRARY_PATH:$HOME/.local/lib"
+    LD_RUN_PATH: "$LD_RUN_PATH:$HOME/.local/lib"
+    DYLD_LIBRARY_PATH: "$DYLD_LIBRARY_PATH:$HOME/.local/lib"
     LDFLAGS: "-L$HOME/.local/lib"
     CPPFLAGS: "-I$HOME/.local/include"
-    PKG_CONFIG_PATH: "$HOME/.local/lib/pkgconfig"
+    PKG_CONFIG_PATH: "$PKG_CONFIG_PATH:$HOME/.local/lib/pkgconfig"
     RUSTC_DATE: "2016-10-06"
   post:
     - sed -i 's/github/git-non-exist-hub/g' ~/.gitconfig
@@ -32,11 +33,17 @@ dependencies:
       fi
     # install SDL2_mixer
     - >
-      if [[ ! -e SDL2_mixer-2.0.0 ]]; then
+      if [[ ! -e SDL2_mixer-2.0.1 ]]; then
         wget -q https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.0.1.tar.gz;
         tar xf SDL2_mixer-*.tar.gz;
         cd SDL2_mixer-* && ./configure --prefix=$HOME/.local && make -j install;
       fi
+    # set cargo & rust link args
+    - >
+      mkdir -p .cargo
+      echo '[target]' >> .cargo/config
+      echo 'rustc-link-search = ["/home/ubuntu/.local/lib"]' >> .cargo/config
+
 
 test:
   override:
