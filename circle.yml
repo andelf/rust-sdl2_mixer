@@ -1,13 +1,10 @@
 machine:
-  timezone:
-    Asia/Chongqing
   environment:
     LD_LIBRARY_PATH: /usr/local/lib
     PATH: "$HOME/.cargo/bin:$PATH"
     RUSTC_DATE: "2016-10-06"
   post:
     - sed -i 's/github/git-non-exist-hub/g' ~/.gitconfig
-    - env
 
 dependencies:
   cache_directories:
@@ -15,7 +12,6 @@ dependencies:
     - SDL2_mixer-2.0.0
     - ~/.cargo
   pre:
-    - echo CPU Cores $(cat /proc/cpuinfo | grep processor | wc -l)
     # install rust nightly
     - >
       if [[ ! -e ~/.cargo ]]; then
@@ -29,7 +25,7 @@ dependencies:
       if [[ ! -e SDL2-2.0.3 ]]; then
         time wget -q https://www.libsdl.org/release/SDL2-2.0.3.tar.gz;
         time tar xf SDL2-*.tar.gz;
-        cd SDL2-* && ./configure && make -j $(cat /proc/cpuinfo | grep processor | wc -l);
+        cd SDL2-* && ./configure && make -j;
       fi
     - cd SDL2-* && sudo make install
     # install SDL2_mixer
@@ -37,7 +33,7 @@ dependencies:
       if [[ ! -e SDL2_mixer-2.0.0 ]]; then
         time wget -q https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.0.0.tar.gz;
         time tar xf SDL2_mixer-*.tar.gz;
-        cd SDL2_mixer-* && ./configure && make -j $(cat /proc/cpuinfo | grep processor | wc -l);
+        cd SDL2_mixer-* && ./configure && make -j;
       fi
     - cd SDL2_mixer-* && sudo make install
 
