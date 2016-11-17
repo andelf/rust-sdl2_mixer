@@ -1,15 +1,18 @@
 machine:
   environment:
-    LD_LIBRARY_PATH: /usr/local/lib
-    PATH: "$HOME/.cargo/bin:$PATH"
+    PATH: "$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
+    LD_LIBRARY_PATH: "$HOME/.local/lib"
+    LD_RUN_PATH: "$HOME/.local/lib"
+    LDFLAGS: "-L$HOME/.local/lib"
+    CPPFLAGS: "-I$HOME/.local/include"
+    PKG_CONFIG_PATH: "$HOME/.local/lib/pkgconfig"
     RUSTC_DATE: "2016-10-06"
   post:
     - sed -i 's/github/git-non-exist-hub/g' ~/.gitconfig
+    - env
 
 dependencies:
   cache_directories:
-    - SDL2-2.0.3
-    - SDL2_mixer-2.0.0
     - ~/.cargo
   pre:
     # install rust nightly
@@ -22,20 +25,18 @@ dependencies:
       fi
     # install SDL2
     - >
-      if [[ ! -e SDL2-2.0.3 ]]; then
-        wget -q https://www.libsdl.org/release/SDL2-2.0.3.tar.gz;
+      if [[ ! -e SDL2-2.0.5 ]]; then
+        wget -q https://www.libsdl.org/release/SDL2-2.0.5.tar.gz;
         tar xf SDL2-*.tar.gz;
-        cd SDL2-* && ./configure && make -j;
+        cd SDL2-* && ./configure --prefix=$HOME/.local && make -j install;
       fi
-    - cd SDL2-* && sudo make install
     # install SDL2_mixer
     - >
       if [[ ! -e SDL2_mixer-2.0.0 ]]; then
-        wget -q https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.0.0.tar.gz;
+        wget -q https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.0.1.tar.gz;
         tar xf SDL2_mixer-*.tar.gz;
-        cd SDL2_mixer-* && ./configure && make -j;
+        cd SDL2_mixer-* && ./configure --prefix=$HOME/.local && make -j install;
       fi
-    - cd SDL2_mixer-* && sudo make install
 
 test:
   override:
